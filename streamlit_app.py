@@ -54,4 +54,6 @@ col1, col2, col3 = st.columns(3)
 # Display metrics
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
-col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%", delta=f"{margin_difference:.2f}%")
+col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%")
+
+st.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%", delta=f"{margin_difference:.2f}%")
