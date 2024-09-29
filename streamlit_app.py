@@ -38,7 +38,7 @@ selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
 if not filtered_data.empty:
-            line_chart_data = filtered_data.set_index('Sub_Category')['Values']
+            line_chart_data = filtered_data.set_index('Sub_Category')['Sales']
             st.line_chart(line_chart_data)
 
 st.write("### (3) show a line chart of sales for the selected items in (2)")
