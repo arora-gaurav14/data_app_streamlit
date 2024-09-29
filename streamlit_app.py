@@ -38,7 +38,7 @@ selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
 st.dataframe(filtered_data)
-sales_by_month = filtered_data.filter(items=['Sales']).groupby(['Sub_Category'),pd.Grouper(freq='M')]).sum()
+sales_by_month = filtered_data.filter(items=['Sales']).groupby(['Sub_Category',pd.Grouper(freq='M')]).sum()
 st.dataframe(sales_by_month)
 
 # st.line_chart(sales_by_month, y="Sales")
