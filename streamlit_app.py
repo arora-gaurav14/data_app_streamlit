@@ -7,6 +7,10 @@ st.title("Data App Assignment, on Oct 7th")
 
 st.write("### Input Data and Examples")
 df = pd.read_csv("Superstore_Sales_utf8.csv", parse_dates=True)
+total_sales_all = df['Sales'].sum()
+total_profit_all = df['Profit'].sum()
+overall_avg_profit_margin = (total_profit_all / total_sales_all * 100) if total_sales_all > 0 else 0
+
 st.dataframe(df)
 
 # This bar chart will not have solid bars--but lines--because the detail data is being graphed independently
@@ -43,12 +47,13 @@ st.line_chart(sales_by_month, y="Sales")
 total_sales = filtered_data['Sales'].sum()
 total_profit = filtered_data['Profit'].sum()
 overall_profit_margin = (total_profit / total_sales * 100) if total_sales > 0 else 0
+margin_difference = overall_profit_margin - overall_avg_profit_margin
 
 col1, col2, col3 = st.columns(3)
 
 # Display metrics
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
-col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%")
+col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%", delta=f"{margin_difference:.2f}%")
 
 st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
