@@ -36,7 +36,7 @@ selected_category = st.selectbox(
 subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique().tolist()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
-filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
+filtered_data = sales_by_month[sales_by_month['Sub_Category'].isin(selected_subcategories)]
 if not filtered_data.empty:
             line_chart_data = filtered_data.set_index('Order_Date')['Sales']
             st.line_chart(line_chart_data)
