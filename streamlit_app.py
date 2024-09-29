@@ -40,6 +40,15 @@ filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
 sales_by_month = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 st.line_chart(sales_by_month, y="Sales")
 
+total_sales = filtered_data['Sales'].sum()
+total_profit = filtered_data['Profit'].sum()
+overall_profit_margin = (total_profit / total_sales * 100) if total_sales > 0 else 0
+
+# Display metrics
+st.metric("Total Sales", f"${total_sales:,.2f}")
+st.metric("Total Profit", f"${total_profit:,.2f}")
+st.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%")
+
 st.write("### (3) show a line chart of sales for the selected items in (2)")
 st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
 st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
