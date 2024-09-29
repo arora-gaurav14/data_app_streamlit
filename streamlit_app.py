@@ -52,16 +52,15 @@ total_profit = filtered_data['Profit'].sum()
 overall_profit_margin = (total_profit / total_sales * 100) if total_sales > 0 else 0
 margin_difference = overall_profit_margin - overall_avg_profit_margin
 
-col1, col2, col3 = st.columns(3)
 st.write("## Question 4")
+col1, col2, col3 = st.columns(3)
 # Display metrics
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
 col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%")
 
-
-col1, col2, col3 = st.columns(3)
 st.write("## Question 5")
+col1, col2, col3 = st.columns(3)
 # Display metrics
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
