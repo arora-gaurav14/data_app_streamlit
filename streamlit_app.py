@@ -37,12 +37,12 @@ subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
-st.dataframe(sales_by_month)
 filtered_data["Order_Date"] = pd.to_datetime(filtered_data["Order_Date"])
 filtered_data.set_index('Order_Date', inplace=True)
 sales_by_month = filtered_data.filter(items=['Sales']).groupbygroupby('Sub_Category').resample('M', on='Date')['Sales'].sum()
 st.dataframe(sales_by_month)
-st.line_chart(sales_by_month, y="Sales")
+
+# st.line_chart(sales_by_month, y="Sales")
 
 st.write("### (3) show a line chart of sales for the selected items in (2)")
 st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
