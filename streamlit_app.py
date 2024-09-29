@@ -37,6 +37,7 @@ subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
+st.dataframe(filtered_data)
 sales_by_month = filtered_data.filter(items=['Sales']).groupbygroupby('Sub_Category').resample('M', on='Date')['Sales'].sum()
 st.dataframe(sales_by_month)
 
