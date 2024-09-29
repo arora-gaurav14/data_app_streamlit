@@ -38,7 +38,7 @@ selected_category = st.selectbox(
     "Select Category", categories
 )
 
-subcategories = df[df['Category'] == selected_category]['Sub_Category'].tolist()
+subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique().tolist()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 
