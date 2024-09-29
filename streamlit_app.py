@@ -33,13 +33,16 @@ st.dataframe(sales_by_month)
 # Here the grouped months are the index and automatically used for the x axis
 st.line_chart(sales_by_month, y="Sales")
 
+st.write("## Question 1")
 categories = df['Category'].unique().tolist()
 selected_category = st.selectbox(
     "Select Category", categories)
 
+st.write("## Question 2")
 subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique().tolist()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
+st.write("## Question 3")
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
 sales_by_month = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 st.line_chart(sales_by_month, y="Sales")
@@ -50,10 +53,16 @@ overall_profit_margin = (total_profit / total_sales * 100) if total_sales > 0 el
 margin_difference = overall_profit_margin - overall_avg_profit_margin
 
 col1, col2, col3 = st.columns(3)
-
+st.write("## Question 4")
 # Display metrics
 col1.metric("Total Sales", f"${total_sales:,.2f}")
 col2.metric("Total Profit", f"${total_profit:,.2f}")
 col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%")
 
-st.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%", delta=f"{margin_difference:.2f}%")
+
+col1, col2, col3 = st.columns(3)
+st.write("## Question 5")
+# Display metrics
+col1.metric("Total Sales", f"${total_sales:,.2f}")
+col2.metric("Total Profit", f"${total_profit:,.2f}")
+col3.metric("Overall Profit Margin", f"{overall_profit_margin:.2f}%", delta=f"{margin_difference:.2f}%")
