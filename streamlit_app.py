@@ -43,11 +43,12 @@ subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
 
 st.write("## Question 3")
-if selected_subcategories:
-    filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
-else:
-    filtered_data = df[df['Category'] == selected_category]
+# if selected_subcategories:
+#     filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
+# else:
+#     filtered_data = df[df['Category'] == selected_category]
 
+filtered_data = df[df['Category'] == selected_category]
 sales_by_month = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 st.line_chart(sales_by_month, y="Sales")
 
