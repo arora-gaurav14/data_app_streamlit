@@ -41,6 +41,7 @@ selected_category = st.selectbox(
 st.write("## Question 2")
 subcategories = df[df['Category'] == selected_category]['Sub_Category'].unique().tolist()
 selected_subcategories = st.multiselect("Select Sub-Categories:", subcategories)
+st.write(select_subcategories)
 
 st.write("## Question 3")
 filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
