@@ -48,7 +48,7 @@ st.write("## Question 3")
 # else:
 #     filtered_data = df[df['Category'] == selected_category]
 
-filtered_data = df[df['Category'] == selected_category]
+filtered_data = df[df['Sub_Category'].isin(selected_subcategories)]
 sales_by_month = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 st.line_chart(sales_by_month, y="Sales")
 
